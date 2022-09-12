@@ -129,9 +129,8 @@ HAVING
 # Item D ------------------------------------------------------------------------------------
 SELECT
 	COUNT(*) as `Qdte de alunos que não moram na cidade de Natal` 
-FROM
-	tb_alunos
-WHERE
+FROM tb_alunos
+WHERE 
 	NOT cidade = 'NATAL';
 
 
