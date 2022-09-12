@@ -1,0 +1,64 @@
+# DDL Item 2
+
+CREATE SCHEMA Universidade;
+
+CREATE TABLE tb_alunos (
+	ID INT AUTO_INCREMENT,
+    MAT INT NOT NULL,
+    nome VARCHAR(255) NOT NULL,
+    endereco VARCHAR(50) NOT NULL,
+    cidade VARCHAR(50) NOT NULL,
+    PRIMARY KEY (ID),
+    UNIQUE(MAT)
+);
+
+CREATE TABLE tb_disciplinas (
+	ID INT AUTO_INCREMENT,
+    COD_DISC VARCHAR(10) NOT NULL,
+    descricao VARCHAR(255) NOT NULL,
+    carga_horaria INT,
+    PRIMARY KEY (ID),
+    UNIQUE(COD_DISC)
+);
+
+CREATE TABLE tb_professores (
+	ID INT AUTO_INCREMENT,
+    COD_PROF INT NOT NULL,
+    nome VARCHAR(255) NOT NULL,
+    endereco VARCHAR(50) NOT NULL,
+    cidade VARCHAR(50) NOT NULL,
+    PRIMARY KEY (ID),
+    UNIQUE(COD_PROF)
+);
+
+CREATE TABLE tb_turmas (
+	ID INT AUTO_INCREMENT,
+    COD_TURMA INT,
+    ano INT,
+    horario VARCHAR(10),
+	COD_DISC VARCHAR(10),
+    COD_PROF INT,
+    PRIMARY KEY (ID),
+    FOREIGN KEY (COD_DISC) REFERENCES tb_disciplinas(COD_DISC),
+    FOREIGN KEY (COD_PROF) REFERENCES tb_professores(COD_PROF)
+);
+
+CREATE TABLE tb_historico (
+	ID INT AUTO_INCREMENT,
+    frequencia DECIMAL(5,2),
+    nota DECIMAL(5,2),
+    MAT_ALUNO INT,
+    ID_TURMA INT,
+    PRIMARY KEY (ID),
+    FOREIGN KEY (MAT_ALUNO) REFERENCES tb_alunos(MAT),
+    FOREIGN KEY (ID_TURMA) REFERENCES tb_turmas(ID)
+);
+
+
+
+
+
+
+
+
+
